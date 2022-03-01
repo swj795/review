@@ -197,5 +197,5 @@ git diff --staged
 git diff
 ```
 
-
+合并代码前先提交一下pull request
 
