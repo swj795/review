@@ -48,7 +48,7 @@ function threeSum (nums) {
 console.log(threeSum([-1,0,1,2,-1,-4]));
 
 
-// 和大于等于k的最短子数组
+// 和大于等于k的最短子数组的长度
 function minSubArrayLen(k,nums) {
     let left = 0,minlength = Number.MAX_VALUE,sum = 0;
     for(let right = 0;right < nums.length;right++){
@@ -64,3 +64,23 @@ function minSubArrayLen(k,nums) {
 }
 
 console.log(minSubArrayLen(7,[5,1,3,4]));
+
+
+// 乘积小于k的子数组的个数
+function numSubarrayProductLessThanK(nums,k){
+    // 乘积初始化
+    let product = 1
+    //定义左指针
+    let left = 0;
+    let count = 0 // 定义子数组的个数
+    for(let right = 0;right < nums.length;right++) {
+        product *= nums[right];
+        while(left <= right && product >= k){
+            product /= nums[left++]
+        }
+        count += right >= left ? right - left + 1 : 0;
+    }
+    return count;
+}
+
+console.log(numSubarrayProductLessThanK([5,6,2,10],100));
