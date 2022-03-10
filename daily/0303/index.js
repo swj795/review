@@ -48,3 +48,19 @@ function threeSum (nums) {
 console.log(threeSum([-1,0,1,2,-1,-4]));
 
 
+// 和大于等于k的最短子数组
+function minSubArrayLen(k,nums) {
+    let left = 0,minlength = Number.MAX_VALUE,sum = 0;
+    for(let right = 0;right < nums.length;right++){
+        sum += nums[right];
+        while(left <= right && sum >= k){
+            minlength = Math.min(minlength,right - left + 1);
+            sum -= nums[left];
+            left++;
+            // sum -= nums[left++]
+        }
+    }
+    return minlength === Number.MAX_VALUE ? 0 : minlength;
+}
+
+console.log(minSubArrayLen(7,[5,1,3,4]));
