@@ -477,9 +477,7 @@ const a3 = a1.concat(a2)
 const a3 = [...a1,...a2]
 ```
 
-
-
-###### Array.from()
+###### 类数组转换成数组
 
 ```js
 // 将类数组对象和可遍历对象转换成真正的数组
@@ -491,7 +489,7 @@ let arrayLike = {
 };
 // ES5  
 // slice 属于浅拷贝 原始数组不会改变
-var arr = [].slice.call(arrayLike); // ['a']
+var arr = [].slice.call(arrayLike); // ['a','b','c']
 
 // ES6
 let arr2 = Array.from(arrayLike)
@@ -507,6 +505,36 @@ Array.from(arrayLike,n => n||0)
 // expr1 || expr2  如果expr1为true  返回expr1 反之返回expr2 用与Boolean中 有一个为true返回true
 // expr1 && expr2  如果expr1为false 返回expr1 反之返回expr2 用与Boolean中 有一个不为true返回false
 ```
+
+###### 数组常用api
+
+Array.prototype.slice(start,end)
+
+返回一个新的数组，包括start 不包括end，属于浅拷贝
+
+Array.prototype.splice(start,deletcount,[...item])
+
+通过删除或插入元素，start（开始的位置） deletcount(删除的个数) [...item]插入的元素
+
+返回修改之后的数组（在原数组上）
+
+Array.prototype.keys()
+
+返回一个数组元素为：每个元素对应的索引
+
+Array.prototype.values()
+
+返回一个数组元素为：原先数组的每一项
+
+Array.prototype.includes()
+
+用来判断一个数组是否包含某一个值返回boolean
+
+
+
+
+
+
 
 #### 闭包
 
@@ -551,3 +579,61 @@ mounted：对dom相关操作
 destroyed： 做清除工作
 
 ### React
+
+#### hooks
+
+##### useState
+
+需要向组件中添加一些状态，
+
+useState参数说明：初始state
+
+useState返回值：返回当前state和更新state函数
+
+```js
+const [count,setCount] = useState(0)
+// 利用了数组解构
+// useState返回一个数组，第一个元素是当前的state，第二个元素是一个更新state的函数
+```
+
+
+
+##### useEffect
+
+React 会在每一次渲染后调用副作用函数——包括第一次渲染
+
+清除副作用：在useEffect中通过返回一个函数来清除副作用
+
+```js
+useEffect(() => {
+  const subscribe = prop.source.subscribe();
+  return () => {
+    subscription.unsubscribe()
+  }
+})
+```
+
+提高性能：通过传递第二个参数，根据第二个参数是否有变化来决定是否执行effect
+
+如果传递一个空数组，说明effect不依赖任何props和state，永远都不需要重复执行
+
+### 奇安信笔试
+
+数组结构查找效率最高：
+
+![image-20220311110037014](/Users/swj/Library/Application Support/typora-user-images/image-20220311110037014.png)
+
+
+
+### ACM模式
+
+```js
+var k. = readline()
+while(line = readline()) {
+  var lines = line.split(' ');
+  var a = parseInt(lines[0]);
+  var b = parseInt(lines[1]);
+  print(a + b)
+}
+```
+
