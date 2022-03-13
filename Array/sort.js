@@ -167,3 +167,13 @@ return arr
 }
 
 console.log(shellSort([1,3,2,5,4,6,8,7]));
+
+
+// 随机算法
+function shuffle(arr) {
+    for(let i = arr.length; i > 0;i--) {
+        const randomIndex = Math.floor(Math.random() * i + 1);
+        [arr[randomIndex],arr[i]] = [arr[i],arr[randomIndex]]
+    }
+    return arr
+}
