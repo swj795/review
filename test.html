@@ -8,25 +8,31 @@
 </head>
 <body>
     <div class="content">
-        <div class="left"></div>
-        <div class="right"></div>
     </div>
     <style>
         .content {
-            display: flex;
+            position: relative;
+            width: 140px;
+            height: 115px;
+            z-index:10;
+            /* background: red; */
         }
-        .left {
-            width: 50vw;
-            height: 100vh;
-            background-color: red;
-        }
-        .right {
-            
-            flex: 1;
-            height: 100vh;
-            background-color: blue;
-
-        }
+       .content::before, .content::after {
+        content: '';
+        position: absolute;
+        left: 70px;
+        width: 70px;
+        height: 115px;
+        background: red;
+        border-radius: 50px 50px 0 0;
+        transform: rotate(-45deg);
+        transform-origin: left bottom;
+       }
+       .content::after {
+           left: 0;
+           transform: rotate(45deg);
+           transform-origin: right bottom;
+       }
     </style>
 </body>
 </html>
