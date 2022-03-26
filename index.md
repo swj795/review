@@ -171,7 +171,39 @@ flex-shrink flex元素会缩小到flex-basis以下
 
 ### js
 
-#### 创建AJAX
+#### 数据类型
+
+基本数据类型
+
+string number boolean symbol bigInt null undefined 
+
+引用数据类型
+
+object Array Math 。。。
+
+##### null 和undefined
+
+```js
+1 + null // 1
+null == null // true
+null === null // true
+null == undefined // true
+null === undefined // false
+isNaN(1+null) // false
+isNaN(1+undefined) // true
+```
+
+
+
+#### '='、浅拷贝 深拷贝
+
+a = b  
+
+a和b对于相同位置的引用，改变b 同时也会改变a
+
+![image-20220314154529734](/Users/swj/Library/Application Support/typora-user-images/image-20220314154529734.png)
+
+#### 创建AJAX·
 
 ```js
 // 创建XMLHttpRequest对象
@@ -433,6 +465,59 @@ https://github.com/swj795/review/blob/0301/closure.js
 
 定时器，事件声明等
 
+#### 原型链
+
+![image-20220315102813265](/Users/swj/Library/Application Support/typora-user-images/image-20220315102813265.png)
+
+
+
+![image-20220315103203772](/Users/swj/Library/Application Support/typora-user-images/image-20220315103203772.png)
+
+
+
+![image-20220315141217326](/Users/swj/Library/Application Support/typora-user-images/image-20220315141217326.png)
+
+
+
+
+
+constructor 返回实例对象的构造函数 只有实例化之后执行在实例对象中查看
+
+hasOwnProperty()    判断对象是有某一个属性  返回boolean值
+
+
+
+#### 继承
+
+1、使用原型继承
+
+子类的原型是父类的实例对象，子类的constructor指向父类构造函数
+
+![image-20220315141247814](/Users/swj/Library/Application Support/typora-user-images/image-20220315141247814.png)
+
+缺点：
+
+1、父类实例对象中的引用类型会被所有实例共享
+
+2、子类不能向父类传参
+
+```js
+function parent(name = 'lisi',parentArr = []) {
+    this.name = name;
+    this.parentArr = parentArr;
+}
+
+parent.prototype.getArr = function (){
+    return this.arr;
+}
+
+function child1 () {}
+
+child1.prototype = new parent()
+```
+
+
+
 ---
 
 ### vue
@@ -522,5 +607,9 @@ while(line = readline()) {
   var b = parseInt(lines[1]);
   print(a + b)
 }
+
+// read_line() 读取字符串 
+// readInt()  读取整数
+// readDouble 读取浮点类型
 ```
 
