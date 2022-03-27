@@ -61,4 +61,24 @@ list.push(3)
 list.push(4)
 list.push(5)
 list.push(6)
-console.log(reverseList(list).toString());
+// console.log(reverseList(list).toString());
+
+// 翻转链表指定的位置left - right
+function reverseBetween(linkList,left,right){
+    let vNode = new Node(-1);
+    vNode.next = linkList.head;
+    let pre = vNode;
+    for(let i = 0;i < left -1;i++){
+        pre = pre.next;
+    }
+    const cur = pre.next;
+    for(let i = 0;i < right - left; i++){
+        const next = cur.next;
+        cur.next = next.next;
+        next.next = pre.next;
+        pre.next = next;
+    } 
+    return linkList
+}
+
+console.log(reverseBetween(list,2,5).toString());
