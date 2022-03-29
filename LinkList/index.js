@@ -39,7 +39,8 @@ class LinkList {
     }
 }
 
-function reverseList (linkList) {
+// 迭代方法实现反转链表 
+function reverseList1 (linkList) {
     let pre = null;
     let cur = linkList.head;
     while(cur){
@@ -48,10 +49,19 @@ function reverseList (linkList) {
         pre = cur
         linkList.head = cur;
         cur = next
-
     }
-
     return linkList
+}
+
+// 递归方法实现反转链表
+function reverseList2 (head) {
+    if(head == null || head.next == null){
+        return head;
+    }
+    const newHead = reverseList2(head.next)
+    head.next.next = head;
+    head.next = null
+    return newHead;
 }
 
 const list = new LinkList();
@@ -62,23 +72,37 @@ list.push(4)
 list.push(5)
 list.push(6)
 // console.log(reverseList(list).toString());
+console.log(reverseList2(list.head));
+// // 翻转链表指定的位置left - right
+// function reverseBetween(linkList,left,right){
+//     let vNode = new Node(-1);
+//     vNode.next = linkList.head;
+//     let pre = vNode;
+//     for(let i = 0;i < left -1;i++){
+//         pre = pre.next;
+//     }
+//     const cur = pre.next;
+//     for(let i = 0;i < right - left; i++){
+//         const next = cur.next;
+//         cur.next = next.next;
+//         next.next = pre.next;
+//         pre.next = next;
+//     } 
+//     return linkList
+// }
 
-// 翻转链表指定的位置left - right
-function reverseBetween(linkList,left,right){
-    let vNode = new Node(-1);
-    vNode.next = linkList.head;
-    let pre = vNode;
-    for(let i = 0;i < left -1;i++){
-        pre = pre.next;
+// console.log(reverseBetween(list,2,5).toString());
+
+// 寻找链表中间节点
+function middleNode(linkList) {
+    let slow =  linkList.head
+    let fast = linkList.head;
+    // 注意判断条件 fast 和fast.next 
+    while(fast && fast.next){
+        slow = slow.next;
+        fast = fast.next.next;
     }
-    const cur = pre.next;
-    for(let i = 0;i < right - left; i++){
-        const next = cur.next;
-        cur.next = next.next;
-        next.next = pre.next;
-        pre.next = next;
-    } 
-    return linkList
+    return slow
 }
 
-console.log(reverseBetween(list,2,5).toString());
+console.log(middleNode(list));
