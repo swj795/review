@@ -46,3 +46,18 @@ function minCostClimbingStairs(cost) {
 
 const cost = [10,15,20];
 console.log(minCostClimbingStairs(cost));
+
+// 打家劫舍问题 198
+function rob (nums) {
+    const len = nums.length;
+    // dp数组长度len+1的原因是 在原数组前添加了0
+    const dp = new Array(len+1);
+    dp[0] = 0;
+    dp[1] = nums[0];
+    // 循环nums, 得到dp，不能忘记数组长度+1
+    for(let i = 2; i < len + 1;i++){
+        dp[i] = Math.max(dp[i-2] + nums[i-1],dp[i-1])
+    }
+    return dp[len];
+}
+console.log(rob([1,2,3,4,5,21,4]));
