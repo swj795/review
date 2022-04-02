@@ -61,3 +61,26 @@ function rob (nums) {
     return dp[len];
 }
 console.log(rob([1,2,3,4,5,21,4]));
+
+// 打家劫舍问题 213
+function rob2(nums) {
+    const len = nums.length;
+    if(len === 1) {
+        return nums;
+    }else if(len === 2){
+        return Math.max(nums[0],nums[1])
+    }
+    return Math.max(robRange(nums,0,len - 2),robRange(nums,1,len-1))
+}
+
+function robRange(nums,start,end){
+    // first 记录前一次最大值 second记录当前最大值
+    let first = nums[start],second = Math.max(nums[start + 1],nums[start]);
+    for(let i = start+2; i <= end;i++){
+        let temp = second;
+        second = Math.max(first + nums[i],second)
+        first = temp;
+    }
+    return second
+}
+console.log(rob2([1,2,3,4,5,4,21]));
