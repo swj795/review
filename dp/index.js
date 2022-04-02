@@ -84,3 +84,30 @@ function robRange(nums,start,end){
     return second
 }
 console.log(rob2([1,2,3,4,5,4,21]));
+
+// 删除点数并且记录删除点数的和最大值 740
+
+function deleteAndCount(nums){
+    let maxVal = 0
+    for(let val of nums) {
+        maxVal = maxVal > val ? maxVal : val
+    }
+    const sum = new Array(maxVal+1).fill(0)
+    for(let item of nums) {
+        sum[item] += item;
+    }
+    return rob1(sum)
+}
+
+function rob1(nums){
+    const len = nums.length;
+    let first = nums[0],second = Math.max(nums[0],nums[1])
+    for(let i = 2; i < len;i++){
+        let temp = second;
+        second = Math.max(first + nums[i],second)
+        first = temp;
+    }
+    return second;
+}
+
+console.log(deleteAndCount([1,2,3,3,3,2,2,2,4,4,4]));
