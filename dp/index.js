@@ -111,3 +111,17 @@ function rob1(nums){
 }
 
 console.log(deleteAndCount([1,2,3,3,3,2,2,2,4,4,4]));
+
+// 跳跃游戏
+
+
+
+// 最大子数组和
+function maxSubArray(nums){
+    let pre = 0,res = nums[0];
+    nums.forEach(x =>{
+        pre = Math.max(pre + x,x);
+        res = Math.max(pre,res);
+    })
+    return res;
+}
