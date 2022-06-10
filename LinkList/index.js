@@ -106,3 +106,18 @@ function middleNode(linkList) {
 }
 
 console.log(middleNode(list));
+
+
+// 判断链表是否有环
+function hasCycle (head) {
+    let slow = head;
+    let fast = head;
+    while(fast && fast.next) {
+        slow = slow.next;
+        fast = fast.next.next;
+        if(slow === fast){
+            return true;
+        }
+    }
+    return false;
+}
